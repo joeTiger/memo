@@ -1,5 +1,6 @@
 # memo
 MEMOrize all your ubuntu command lines and share them with colleagues. a powerful python history tool...
+btw, no need root permission to install this tool..
 
 ### **Download**
 download the **memo_1.0.XX.tar.gz** file
