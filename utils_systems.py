@@ -4,7 +4,7 @@ import sys
 import subprocess
 import re
 
-from mydev.utils_log import log_debug
+from utils_log import log_debug
 
 PORT = 8081         # Make sure it's within the > 1024 $$ <65535 range
 

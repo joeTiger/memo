@@ -1,5 +1,5 @@
 import os
-from mydev.utils_log import log_debug
+from utils_log import log_debug
 
 def get_last_n_lines(file_name, N):
     # Create an empty list to keep the track of last N lines

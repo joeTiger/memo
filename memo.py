@@ -86,16 +86,16 @@ import sys
 
 # appending a path
 #sys.path.append('/home/vpnuser/python3')
-from mydev.static_helper import StaticHelper
+from static_helper import StaticHelper
 
 sys.path.append('/homes/mosheh/python3')
 
-from mydev.client_server import client, server, client_another_email
-from mydev.utils_systems import check_server, kill_server, show_pids_memo
-from mydev.utils_cron_bash import init_crontab, remove_memo_from_crontab, remove_alias_from_bashrc
-from mydev.utils_log import log_debug, set_log_level
+from client_server import client, server, client_another_email
+from utils_systems import check_server, kill_server, show_pids_memo
+from utils_cron_bash import init_crontab, remove_memo_from_crontab, remove_alias_from_bashrc
+from utils_log import log_debug, set_log_level
 
-__version__ = '1.0.28'
+__version__ = '1.0.29'
 
 
 if __name__ == '__main__':

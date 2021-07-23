@@ -3,7 +3,7 @@ import os
 import re
 import time
 
-from mydev.utils_log import log_debug
+from utils_log import log_debug
 
 
 class StaticHelper:
