@@ -4,7 +4,7 @@ btw, no need root permission to install this tool..
 
 ### **Download**
 download the **memo_1.0.XX.tar.gz** file
-(anywhere you want...people generaly use folder  **~/Download**)
+(anywhere you want...people generally use folder  **~/Download**)
 
 ### **UnZip**
 `tar -xvf memo_1.0.XX.tar.gz`
