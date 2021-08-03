@@ -22,11 +22,11 @@ fi
 
 # if parameter empty
 if [ -z "${email}" ]; then
-  ./memo -i 
+  ./memo -i -d
 else
   #echo 'email exists...'
   #echo "<${email}>"
-  ./memo -i -e $email
+  ./memo -i -e $email -d
 fi
 
 ret=$?

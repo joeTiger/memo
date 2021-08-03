@@ -83,19 +83,17 @@ memo_sheet.py
 
 import argparse
 import sys
+import rsa
 
 # appending a path
 #sys.path.append('/home/vpnuser/python3')
 from static_helper import StaticHelper
-
-sys.path.append('/homes/mosheh/python3')
-
 from client_server import client, server, client_another_email
-from utils_systems import check_server, kill_server, show_pids_memo
+from utils_systems import check_server, kill_server, show_pids_memo, licence_key_is_valid
 from utils_cron_bash import init_crontab, remove_memo_from_crontab, remove_alias_from_bashrc
 from utils_log import log_debug, set_log_level
 
-__version__ = '1.0.29'
+__version__ = '1.0.31'
 
 
 if __name__ == '__main__':
@@ -138,6 +136,10 @@ if __name__ == '__main__':
             if email is None:
                 # return error code 1 if not mail found...
                 sys.exit(1)
+        if not licence_key_is_valid(email):
+            log_debug('invalid license...')
+            sys.exit(0)
+
         log_debug('init crontab with "memo -c -d..." if missing...')
         ret = init_crontab(args.local_mode, email)
         # already installed - return error code 255

@@ -1,12 +1,39 @@
 # https://pypi.org/project/python-crontab/
+# https://stackoverflow.com/questions/65597453/how-to-store-private-and-public-key-into-pem-file-generated-by-rsa-module-of-pyt
 
 import sys
 import subprocess
 import re
 
+import rsa
+import base64
+
 from utils_log import log_debug
 
 PORT = 8081         # Make sure it's within the > 1024 $$ <65535 range
+
+
+def licence_key_is_valid(email):
+    try:
+        with open('license_pubkey.txt','r') as f:
+            data = f.read()
+            log_debug(f'read from file...license_pubkey.txt...{data[32:50]}')
+            # Import public key in PKCS#1 format, PEM encoded
+            pubkey = rsa.PublicKey.load_pkcs1(data.encode('utf8'))
+            with open('license.txt','rb') as f:
+                s = f.read()
+                signature = base64.b64decode(s)
+                try:
+                    rsa.verify(email.encode('utf-8'), signature, pubkey)
+                    log_debug('Valid license key....')
+                    return True
+                except rsa.VerificationError:
+                    log_debug('invalid license key - refuse to start...')
+                    return False
+    except IOError as e:
+        log_debug("Couldn't open file (%s)." % e)
+        return False
+
 
 
 def execute_shell_cmd(cmd, background=False):

@@ -6,7 +6,7 @@ sed -i '/memo/s/^#//' .bashrc         # remove comment
 sed -e '/memo/ s/^#*/#/' -i .bashrc   # add comment
 """
 
-#import pathlib
+import pathlib
 import os
 
 from crontab import CronTab
@@ -61,8 +61,8 @@ def line_prepender(filename, export_line):
 # "# Added by memo...\n"
 def add_alias_in_bash_file(local_mode):
     log_debug('add_alias_in_bashrc...')
-    #path_memo = pathlib.Path().absolute()
-    #log_debug(path_memo)
+    path_memo = pathlib.Path().absolute()
+    log_debug(path_memo)
 
     #.bashrc
     filename = os.path.expanduser("~/{}".format(BASHRC_FILE))
@@ -93,8 +93,8 @@ def add_alias_in_bash_file(local_mode):
 def add_cmd_memo_in_cron(cron, local_mode, email=None):
     #job = cron.new(command='/usr/local/bin/memo -c > /tmp/listener.log 2>&1')
     log_debug('add_cmd_memo_in_cron...')
-    #path_memo = pathlib.Path().absolute()
-    #log_debug(path_memo)
+    path_memo = pathlib.Path().absolute()
+    log_debug(path_memo)
 
     if local_mode:
         cmd = 'python {}/memo.py -c -l -d'.format(path_memo)
