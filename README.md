@@ -26,7 +26,7 @@ An alias **memo** is created which allow to call it anywhere from any terminal
 ### **Usage**
 
 - `memo` will display all history from all your console terminals
-- `memo [pattern]` will diplsay all your history containing this pattern, for example `memo ls`
+- `memo [pattern]` will display all your history containing this pattern, for example `memo ls`
 - `memo [n]` will execute the index command line - Refer to command line n, for example `memo 5`
-- `memo [pattern] [-e email]` will display history of your colleague identified by email, for example `memo ls -e scott.tiger@cisco.com` will display all command lines of **scott**
+- `memo [pattern] [-e email]` will display history of your colleague identified by email, for example `memo ls -e scott.tiger@cisco.com` will display all command lines of **scott** which contains the pattern `ls`
 
