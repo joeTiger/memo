@@ -49,7 +49,7 @@ create alias (alias memo='~/Downloads/memo_1.0-3_x64/usr/local/bin/memo')
 
 flow
 . install_memo.sh
-  =>  ./memo -i [email]
+  =>  ./memo -i [email] -d
 
 check cron tab and add "memo -c ..." if not exists
 * * * * * /homes/mosheh/Downloads/memo_1.0.22/memo -c -d -e email > /tmp/listener.log 2>&1
@@ -88,12 +88,12 @@ import rsa
 # appending a path
 #sys.path.append('/home/vpnuser/python3')
 from static_helper import StaticHelper
-from client_server import client, server, client_another_email
-from utils_systems import check_server, kill_server, show_pids_memo, licence_key_is_valid
+from client_server import client, server, client_remote_email
+from utils_systems import check_server, kill_server, show_pids_memo
 from utils_cron_bash import init_crontab, remove_memo_from_crontab, remove_alias_from_bashrc
 from utils_log import log_debug, set_log_level
 
-__version__ = '1.0.31'
+__version__ = '1.0.32'
 
 
 if __name__ == '__main__':
@@ -136,9 +136,6 @@ if __name__ == '__main__':
             if email is None:
                 # return error code 1 if not mail found...
                 sys.exit(1)
-        if not licence_key_is_valid(email):
-            log_debug('invalid license...')
-            sys.exit(0)
 
         log_debug('init crontab with "memo -c -d..." if missing...')
         ret = init_crontab(args.local_mode, email)
@@ -159,10 +156,12 @@ if __name__ == '__main__':
         remove_memo_from_crontab()
         remove_alias_from_bashrc()
 
+    # -c
     if args.check:
         check_server(args.local_mode, program_name, args.email)
         sys.exit(0)
 
+    # -s
     if args.server:
         server(args.email) # program_name is memo or memo.py
 
@@ -175,7 +174,7 @@ if __name__ == '__main__':
     if args.email and args.server is False:
         log_debug('search pattern on another email')
         pattern = args.pattern[0] if args.pattern else ' '
-        client_another_email(args.email, pattern)
+        client_remote_email(args.email, pattern)
 
 if len(sys.argv) == 1:
         log_debug('no params...')

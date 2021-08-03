@@ -35,7 +35,6 @@ def licence_key_is_valid(email):
         return False
 
 
-
 def execute_shell_cmd(cmd, background=False):
     log_debug(100 * '-')
     log_debug('cmd --------------- <{}>'.format(cmd))
